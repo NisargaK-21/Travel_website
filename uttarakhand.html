@@ -1,0 +1,187 @@
+<html>
+    <head>
+        <title>Travel</title>
+                <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+.header {
+    background: linear-gradient(90deg, rgb(11, 11, 157), rgb(42, 74, 204));
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.header h1 {
+    font-size: 40px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+
+nav {
+    background-color: rgb(11, 11, 157);
+    padding: 12px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    color: #ffda79;
+    transform: scale(1.05);
+}
+
+
+#destinations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.destination-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+.destination-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.destination-card p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.destination-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+button {
+    background-color: rgb(11, 11, 157);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: rgb(42, 74, 204);
+    transform: scale(1.05);
+}
+
+
+.footer {
+    background-color: rgb(11, 11, 157);
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+        </style>
+    </head>
+
+    <body>
+     <div class="header">
+     <h1>Travel India</h1>
+     
+     <div>
+        
+        <nav>
+            <a href="travel_home_page.html">Home</a>
+            <a href="travel_about_page.html">About</a>
+            <a href="travel_contact_page.html">Contact</a>
+        </nav>
+    </div>
+    <div id="destinations"></div>
+    <script>
+        async function loadUttarakhandDestinations() {
+    try {
+        const response = await fetch("http://localhost:5000/destinations");
+        const data = await response.json();
+
+        
+        const uttarakhandData = data.filter(dest => dest.state?.toLowerCase() === "uttarakhand");
+
+        const container = document.getElementById("destinations");
+        container.innerHTML = "";
+
+        uttarakhandData.forEach(dest => {
+            const card = document.createElement("div");
+            card.className = "destination-card";
+            card.innerHTML = `
+                <h2>${dest.name}</h2>
+                <p>${dest.category}</p>
+                <p>${dest.description}</p>
+                <img src="${dest.image_url || 'placeholder.jpg'}" alt="${dest.name}" width="200">
+                 <br>
+                <br>
+                <button onclick="window.location.href='uttarakhand_hotels.html'">View Hotels</button>
+            `;
+            container.appendChild(card);
+        });
+    } catch (err) {
+        console.error("Error fetching Uttarakhand destinations:", err);
+    }
+}
+
+
+loadUttarakhandDestinations();
+
+    </script>
+
+<br>
+<br>
+<button onclick="window.location.href='uttarakhand_events.html'">Check out the events</button>
+     <div class="footer">
+        <p>Bootcamp project</p>
+        <p>Copyright 2025</p>
+
+     </div>
+    </body>
+
+</html>
