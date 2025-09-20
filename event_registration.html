@@ -1,111 +1,10 @@
-<!--<html>
-    <head>
-        <title>event_registration</title>
-        <style>
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-            }
-            h1 {
-                text-align: center;
-                margin-top: 20px;
-            }
-
-            .booking-form {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 300px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #f4f4f4;
-                border-radius: 5px;
-            }
-        </style>
-    </head>
-    <body>
-
-        <h1>Event registration</h1>
-        <div class="booking-form">
-<center> <form >
-            <label for ="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" ></input>
-            <br>
-            <br>
-            <label for ="email">Email:</label>
-            <input type="text" id="email" placeholder="Enter your email" ></input>
-            <br>
-            <br>
-            <label for ="phone">Phone:</label>
-            <input type="text" id="phone" placeholder="Enter your phone" ></input>
-            <br>
-            <br>
-            <label for ="date">Date:</label>
-            <input type="date" id="date" placeholder="Enter your date" ></input>
-            <br>
-            <br>
-            <label for ="time">Time:</label>
-            <input type="time" id="time" placeholder="Enter your time" ></input>
-        </form></center> 
-        </div>
-        <br>
-        <br>
-        <center>
-        <button onclick="event_registration()">Register Now</button>
-        </center>
-    <script>
-
-        async function event_registration() {
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const date = document.getElementById("date").value;
-            const time = document.getElementById("time").value;
-
-            if (!name || !email || !phone || !date || !time) {
-                alert("Please fill in all fields.");
-                return;
-            }
-
-            try {
-                const response = await fetch("http://localhost:5000/event_registrations", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ name, email, phone, date, time })
-                });
-
-                if (response.ok) {
-                    alert("event registration successful!");
-                } else {
-                    alert("event registration failed. Please try again.");
-                }
-            } catch (error) {
-                console.error("Error event registration :", error);
-                alert("An error occurred. Please try again later.");
-            }
-        }
-    </script>
-    </body>
-</html>-->
-
-
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Event Registration</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -114,7 +13,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
             padding-top: 50px;
             color: #fff;
         }
@@ -125,7 +23,7 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
-        .booking-form {
+        .registration-form {
             display: flex;
             flex-direction: column;
             width: 350px;
@@ -135,12 +33,12 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
-        .booking-form label {
+        .registration-form label {
             margin-bottom: 5px;
             font-weight: bold;
         }
 
-        .booking-form input {
+        .registration-form input {
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 8px;
@@ -149,8 +47,8 @@
             transition: border-color 0.3s;
         }
 
-        .booking-form input:focus {
-            border-color: #FFDA79; 
+        .registration-form input:focus {
+            border-color: #FFDA79;
             outline: none;
         }
 
@@ -181,36 +79,36 @@
 </head>
 <body>
 
-    <h1>Event Registration</h1>
+<h1>Event Registration</h1>
 
-    <div class="booking-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" placeholder="Enter your name">
+<div class="registration-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email">
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number">
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" placeholder="Enter your phone number">
 
-        <label for="date">Date:</label>
-        <input type="date" id="date">
+    <label for="date">Date:</label>
+    <input type="date" id="date">
 
-        <label for="time">Time:</label>
-        <input type="time" id="time">
+    <label for="time">Time:</label>
+    <input type="time" id="time">
 
-        <button class="register-btn" onclick="event_registration()">Register Now</button>
-    </div>
+    <button class="register-btn" onclick="registerEvent()">Register Now</button>
+</div>
 
-    <div class="footer">
-        <p>Bootcamp Project &copy; 2025</p>
-    </div>
+<div class="footer">
+    <p>Bootcamp Project &copy; 2025</p>
+</div>
 
 <script>
-async function event_registration() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
+async function registerEvent() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
     const date = document.getElementById("date").value;
     const time = document.getElementById("time").value;
 
@@ -226,14 +124,17 @@ async function event_registration() {
             body: JSON.stringify({ name, email, phone, date, time })
         });
 
+        const resText = await response.text();
+        console.log('Status:', response.status, 'Response:', resText);
+
         if (response.ok) {
             alert("Event registration successful!");
         } else {
-            alert("Event registration failed. Please try again.");
+            alert("Event registration failed: " + resText);
         }
     } catch (error) {
-        console.error("Error event registration:", error);
-        alert("An error occurred. Please try again later.");
+        console.error("Error during event registration:", error);
+        alert("An error occurred. Please check the console and try again.");
     }
 }
 </script>
