@@ -1,109 +1,9 @@
-<!-- <html>
-    <head>
-        <title>Booking</title>
-        <style>
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-            }
-            h1 {
-                text-align: center;
-                margin-top: 20px;
-            }
-
-            .booking-form {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 300px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #f4f4f4;
-                border-radius: 5px;
-            }
-        </style>
-    </head>
-    <body>
-
-        <h1>Booking table</h1>
-        <div class="booking-form">
-<center> <form >
-            <label for ="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter your name" ></input>
-            <br>
-            <br>
-            <label for ="email">Email:</label>
-            <input type="text" id="email" placeholder="Enter your email" ></input>
-            <br>
-            <br>
-            <label for ="phone">Phone:</label>
-            <input type="text" id="phone" placeholder="Enter your phone" ></input>
-            <br>
-            <br>
-            <label for ="date">Date:</label>
-            <input type="date" id="date" placeholder="Enter your date" ></input>
-            <br>
-            <br>
-            <label for ="time">Time:</label>
-            <input type="time" id="time" placeholder="Enter your time" ></input>
-        </form></center> 
-        </div>
-        <br>
-        <br>
-        <center>
-        <button onclick="bookHotel()">Book Now</button>
-        </center>
-    <script>
-
-        async function bookHotel() {
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const date = document.getElementById("date").value;
-            const time = document.getElementById("time").value;
-
-            if (!name || !email || !phone || !date || !time) {
-                alert("Please fill in all fields.");
-                return;
-            }
-
-            try {
-                const response = await fetch("http://localhost:5000/bookings", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ name, email, phone, date, time })
-                });
-
-                if (response.ok) {
-                    alert("Booking successful!");
-                } else {
-                    alert("Booking failed. Please try again.");
-                }
-            } catch (error) {
-                console.error("Error booking hotel:", error);
-                alert("An error occurred. Please try again later.");
-            }
-        }
-    </script>
-    </body>
-</html> -->
-
+<!DOCTYPE html>
 <html>
 <head>
     <title>Booking</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0B0B9D; 
@@ -115,13 +15,11 @@
             padding-top: 50px;
             color: #fff;
         }
-
         h1 {
             text-align: center;
             margin-bottom: 40px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
-
         .booking-form {
             display: flex;
             flex-direction: column;
@@ -131,12 +29,7 @@
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
-
-        .booking-form label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
+        .booking-form label { margin-bottom: 5px; font-weight: bold; }
         .booking-form input {
             padding: 10px;
             margin-bottom: 20px;
@@ -145,12 +38,7 @@
             font-size: 14px;
             transition: border-color 0.3s;
         }
-
-        .booking-form input:focus {
-            border-color: #FFDA79;
-            outline: none;
-        }
-
+        .booking-form input:focus { border-color: #FFDA79; outline: none; }
         .book-btn {
             padding: 12px;
             background-color: #FFDA79; 
@@ -162,18 +50,8 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
         }
-
-        .book-btn:hover {
-            background-color: #FFC850;
-            transform: scale(1.05);
-        }
-
-        .footer {
-            margin-top: 50px;
-            font-size: 14px;
-            text-align: center;
-            color: #fff;
-        }
+        .book-btn:hover { background-color: #FFC850; transform: scale(1.05); }
+        .footer { margin-top: 50px; font-size: 14px; text-align: center; color: #fff; }
     </style>
 </head>
 <body>
@@ -200,7 +78,8 @@
     </div>
 
     <div class="footer">
-        <p>Bootcamp Project &copy; 2025</p>
+        <p>Bootcamp project</p>
+        <p>Copyright 2025</p>
     </div>
 
 <script>
@@ -216,22 +95,26 @@ async function bookHotel() {
         return;
     }
 
-    try {
-        const response = await fetch("http://localhost:5000/bookings", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, phone, date, time })
-        });
+   try {
+    const response = await fetch("http://localhost:5000/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, date, time })
+    });
 
-        if (response.ok) {
-            alert("Booking successful!");
-        } else {
-            alert("Booking failed. Please try again.");
-        }
-    } catch (error) {
-        console.error("Error booking hotel:", error);
-        alert("An error occurred. Please try again later.");
+    const text = await response.text();
+    console.log(response.status, text);
+
+    if (response.ok) {
+        alert("Booking successful!");
+    } else {
+        alert("Booking failed: " + text);
     }
+} catch (error) {
+    console.error("Error booking hotel:", error);
+    alert("An error occurred. Please try again later.");
+}
+
 }
 </script>
 
