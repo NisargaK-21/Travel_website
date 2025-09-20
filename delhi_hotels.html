@@ -1,173 +1,162 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Travel</title>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+<head>
+    <title>Travel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fc;
-        color: #333;
-        line-height: 1.6;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    .header {
-        background: linear-gradient(90deg, rgb(11, 11, 157), rgb(42, 74, 204));
-        color: white;
-        padding: 15px 0;
-        text-align: center;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
+        .header {
+            background: linear-gradient(90deg, rgb(11, 11, 157), rgb(42, 74, 204));
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
 
-    .header h1 {
-        font-size: 40px;
-        margin: 0;
-        letter-spacing: 1px;
-    }
-
-    nav {
-        background-color: rgb(11, 11, 157);
-        padding: 12px 0;
-        text-align: center;
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: bold;
-        font-size: 16px;
-        transition: color 0.3s ease, transform 0.2s ease;
-    }
-
-    nav a:hover {
-        color: #ffda79;
-        transform: scale(1.05);
-    }
-
-    #hotels {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        gap: 20px;
-    }
-
-    .hotels-card {
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        width: 100%;
-        max-width: 650px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hotels-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-    }
-
-    .hotels-card img {
-        width: 100%;
-        max-height: 350px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
-
-    .footer {
-        background-color: rgb(11, 11, 157);
-        color: white;
-        padding: 15px 0;
-        text-align: center;
-        font-size: 14px;
-        margin-top: 20px;
-    }
-
-    @media (max-width: 768px) {
         .header h1 {
-            font-size: 28px;
+            font-size: 40px;
+            margin: 0;
+            letter-spacing: 1px;
         }
+
+        nav {
+            background-color: rgb(11, 11, 157);
+            padding: 12px 0;
+            text-align: center;
+        }
+
         nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #ffda79;
+            transform: scale(1.05);
+        }
+
+        #hotels {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .hotels-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hotels-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+        }
+
+        .hotels-card img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background-color: rgb(11, 11, 157);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
             font-size: 14px;
-            margin: 0 8px;
+            margin-top: 20px;
         }
-        .destination-card {
-            max-width: 90%;
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            nav a {
+                font-size: 14px;
+                margin: 0 8px;
+            }
         }
-    }
-</style>
-
-    </head>
-
- <body> 
-     <div class="header">
-     <h1>Travel India</h1>
-     
-     <form>
-        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Travel India</h1>
         <nav>
             <a href="travel_home_page.html">Home</a>
             <a href="travel_about_page.html">About</a>
             <a href="travel_contact_page.html">Contact</a>
         </nav>
-    </form>
+    </div>
 
-        <div id="hotels"></div>a
+    <div id="hotels"></div>
+
     <script>
-async function loadDelhiHotels() {
-    try {
-        const response = await fetch("http://localhost:5000/hotels");
-        const data = await response.json();
+        async function loadDelhiHotels() {
+            try {
+                const response = await fetch("http://localhost:5000/hotels");
+                const data = await response.json();
 
-        
-        const delhiData = data.filter(dest => dest.state?.toLowerCase() === "delhi");
+                const delhiHotels = data.filter(dest => dest.state && dest.state.toLowerCase().trim() === "delhi");
 
-        const container = document.getElementById("hotels");
-        container.innerHTML = "";
+                const container = document.getElementById("hotels");
+                container.innerHTML = "";
 
-        delhiData.forEach(dest => {
-            const card = document.createElement("div");
-            card.className = "hotels-card";
-            card.innerHTML = `
-            <br>
-              <br>
-                <h2>${dest.name}</h2>
-                <p>${dest.location}</p>
-                <p>${dest.price_per_night}</p>
-                <p>${dest.rating}</p>
-                <img src="${dest.image_url || 'placeholder.jpg'}" alt="${dest.name}" width="200">;
-                <br>
-                <br>
-                <button onclick="window.location.href='booking.html'">Book now</button>
-                <br>`;
-            container.appendChild(card);
-        });
-    } catch (err) {
-        console.error("Error fetching Delhi hotels:", err);
-    }
-}
+                delhiHotels.forEach(dest => {
+                    const card = document.createElement("div");
+                    card.className = "hotels-card";
+                    card.innerHTML = `
+                        <h2>${dest.name || "No Name"}</h2>
+                        <p>${dest.location || "No Location"}</p>
+                        <p>₹${dest.price_per_night || "N/A"}</p>
+                        <p>Ratings: ${dest.rating || "N/A"}</p>
+                        <img src="${dest.image_url || 'placeholder.jpg'}" alt="${dest.name || "Hotel"}">
+                        <button onclick="window.location.href='booking.html'">Book now</button>
+                    `;
+                    container.appendChild(card);
+                });
 
+                if (delhiHotels.length === 0) {
+                    container.innerHTML = "<p>No Delhi hotels found.</p>";
+                }
 
-loadDelhiHotels();
+            } catch (err) {
+                console.error("Error fetching Delhi hotels:", err);
+                document.getElementById("hotels").innerHTML = "<p>Error loading hotels. Check console.</p>";
+            }
+        }
 
+        loadDelhiHotels();
     </script>
 
-
-
-     <div class="footer">
+    <div class="footer">
         <p>Bootcamp project</p>
         <p>Copyright 2025</p>
-
-     </div>
-    </body>
-
+    </div>
+</body>
 </html>
